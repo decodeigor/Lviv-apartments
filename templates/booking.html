@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Бронювання{% endblock %}
+{% block content %}
+  <h2 class="mb-4">Бронювання: {{ apartment.name }}</h2>
+
+  <form method="post" class="p-4 shadow-sm bg-white rounded">
+    <!-- Ім’я -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Ім’я</label>
+      <input type="text" class="form-control" name="name" required>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" name="email" required>
+    </div>
+
+    <!-- Дата -->
+    <div class="mb-3">
+      <label for="date" class="form-label">Дата</label>
+      <input type="date" class="form-control" name="date" required>
+    </div>
+
+    <!-- Кнопка -->
+    <button type="submit" class="btn btn-primary">Підтвердити бронювання</button>
+  </form>
+{% endblock %}

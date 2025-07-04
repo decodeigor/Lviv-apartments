@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Статистика бронювань{% endblock %}
+{% block content %}
+  <h2 class="mb-4">Статистика популярності апартаментів</h2>
+
+  {% if stats %}
+    <table class="table table-bordered bg-white shadow-sm">
+      <thead class="table-light">
+        <tr>
+          <th>Апартамент</th>
+          <th>Кількість бронювань</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for name, count in stats %}
+        <tr>
+          <td>{{ name }}</td>
+          <td>{{ count }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-info">Бронювань ще немає.</div>
+  {% endif %}
+{% endblock %}

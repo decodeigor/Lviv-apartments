@@ -1,0 +1,130 @@
+/* Основна тема */
+html[data-bs-theme="light"] body {
+  background-color: #f4f6f9;
+  color: #1e2a45;
+}
+
+html[data-bs-theme="dark"] body {
+  background-color: #121212;
+  color: #f8f9fa;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Заголовки */
+h1, h2, h3, .card-title {
+  color: inherit;
+}
+
+/* Картки */
+.card {
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: scale(1.015);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+html[data-bs-theme="dark"] .card {
+  background-color: #1f1f1f;
+  color: #eee;
+}
+
+/* Кнопки */
+.btn-primary {
+  background-color: #FFD700;
+  color: #1e2a45;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: #e6c200;
+}
+
+.btn-outline-secondary {
+  border-color: #bbb;
+  color: #555;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #ddd;
+  color: #222;
+}
+
+/* Темна тема для кнопок */
+html[data-bs-theme="dark"] .btn-outline-secondary {
+  border-color: #888;
+  color: #ccc;
+}
+
+html[data-bs-theme="dark"] .btn-outline-secondary:hover {
+  background-color: #333;
+  color: #FFD700;
+}
+
+.btn-outline-dark:hover {
+  background-color: #FFD700;
+  color: #000;
+}
+
+/* Навігація */
+.navbar {
+  transition: background-color 0.3s ease;
+}
+
+html[data-bs-theme="dark"] #mainNavbar {
+  background-color: #212529 !important;
+}
+
+html[data-bs-theme="light"] #mainNavbar {
+  background-color: #FFD700;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: inherit;
+}
+
+.navbar .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Футер */
+footer {
+  transition: background-color 0.3s ease;
+}
+
+html[data-bs-theme="dark"] #mainFooter {
+  background-color: #1a1a1a;
+  color: #ccc;
+}
+
+html[data-bs-theme="dark"] #mainFooter a {
+  color: #eee;
+}
+
+html[data-bs-theme="dark"] #mainFooter a:hover {
+  color: #FFD700;
+}
+
+html[data-bs-theme="light"] #mainFooter {
+  background-color: #f8f9fa;
+  color: #1e2a45;
+}
+
+/* Анімація появи елементів */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

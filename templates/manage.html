@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Управління апартаментами{% endblock %}
+{% block content %}
+  <h2 class="mb-4">Управління апартаментами</h2>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-success text-center fade-in">{{ messages[0] }}</div>
+    {% endif %}
+  {% endwith %}
+
+  {% if apartments %}
+    <div class="table-responsive bg-white shadow rounded p-3">
+      <table class="table table-bordered align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Назва</th>
+            <th>Опис</th>
+            <th>Ціна</th>
+            <th class="text-center">Дії</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for apartment in apartments %}
+          <tr>
+            <td>{{ apartment.name }}</td>
+            <td>{{ apartment.description }}</td>
+            <td>{{ apartment.price }} грн</td>
+            <td class="text-center">
+              <a href="{{ url_for('edit', apartment_id=apartment.id) }}" class="btn btn-sm btn-outline-primary">Редагувати</a>
+              <form method="post" style="display:inline-block">
+                <input type="hidden" name="apartment_id" value="{{ apartment.id }}">
+                <input type="hidden" name="action" value="delete">
+                <button type="submit" class="btn btn-sm btn-outline-danger">Видалити</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info">Апартаментів ще немає</div>
+  {% endif %}
+{% endblock %}

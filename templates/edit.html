@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Редагувати апартамент{% endblock %}
+{% block content %}
+  <h2 class="mb-4">Редагувати апартамент</h2>
+
+  <form method="post" enctype="multipart/form-data" class="row g-4 bg-white shadow p-4 rounded">
+    <!-- Назва -->
+    <div class="col-md-6">
+      <label class="form-label">Назва</label>
+      <input type="text" name="name" class="form-control" value="{{ apartment.name }}" required>
+    </div>
+
+    <!-- Ціна -->
+    <div class="col-md-6">
+      <label class="form-label">Ціна (грн/ніч)</label>
+      <input type="number" name="price" class="form-control" value="{{ apartment.price }}" step="0.01" required>
+    </div>
+
+    <!-- Опис -->
+    <div class="col-12">
+      <label class="form-label">Опис</label>
+      <textarea name="description" rows="4" class="form-control" required>{{ apartment.description }}</textarea>
+    </div>
+
+    <!-- Фото -->
+    <div class="col-md-6">
+      <label class="form-label">Нове фото (за бажанням)</label>
+      <input type="file" name="image" class="form-control" accept="image/*">
+    </div>
+
+    <!-- Поточне зображення -->
+    {% if apartment.image_url %}
+    <div class="col-md-6">
+      <label class="form-label">Поточне фото</label>
+      <img src="{{ url_for('static', filename='uploads/' ~ apartment.image_url) }}" alt="Фото апартаменту" class="img-fluid rounded shadow-sm">
+    </div>
+    {% endif %}
+
+    <!-- Кнопка -->
+    <div class="col-12 text-end">
+      <button type="submit" class="btn btn-success px-4">Зберегти зміни</button>
+    </div>
+  </form>
+{% endblock %}

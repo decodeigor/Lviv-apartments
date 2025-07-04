@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="uk" data-bs-theme="light">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Апартаменти Львова{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+
+    <!-- Головна навігація -->
+    <nav class="navbar navbar-expand-lg" id="mainNavbar">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="{{ url_for('index') }}">Львівські апартаменти</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Пункти меню -->
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+            <li class="nav-item"><a class="nav-link px-3" href="{{ url_for('add') }}">Додати</a></li>
+            <li class="nav-item"><a class="nav-link px-3" href="{{ url_for('contact') }}">Контакти</a></li>
+            <li class="nav-item"><a class="nav-link px-3" href="{{ url_for('bookings') }}">Бронювання</a></li>
+            <li class="nav-item"><a class="nav-link px-3" href="{{ url_for('manage') }}">Управління</a></li>
+            <li class="nav-item"><a class="nav-link px-3" href="{{ url_for('stats') }}">Статистика</a></li>
+            <li class="nav-item">
+              <!-- Кнопка перемикання теми -->
+              <button class="btn btn-sm btn-outline-dark px-3" onclick="toggleTheme()">Тема</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Flash-повідомлення -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="container mt-3">
+          {% for msg in messages %}
+            <div class="alert alert-success text-center fade-in">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Контент сторінки -->
+    <main class="container py-4 fade-in">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Футер -->
+    <footer class="border-top text-muted mt-auto pt-4 pb-2" id="mainFooter">
+      <div class="container">
+        <div class="row gy-3 text-center text-md-start">
+          <div class="col-md-4">
+            <h6 class="fw-bold">Навігація</h6>
+            <a href="{{ url_for('index') }}" class="d-block text-decoration-none">Головна</a>
+            <a href="{{ url_for('add') }}" class="d-block text-decoration-none">Додати</a>
+            <a href="{{ url_for('contact') }}" class="d-block text-decoration-none">Контакти</a>
+          </div>
+          <div class="col-md-4">
+            <h6 class="fw-bold">Керування</h6>
+            <a href="{{ url_for('bookings') }}" class="d-block text-decoration-none">Бронювання</a>
+            <a href="{{ url_for('manage') }}" class="d-block text-decoration-none">Апартаменти</a>
+            <a href="{{ url_for('stats') }}" class="d-block text-decoration-none">Статистика</a>
+          </div>
+          <div class="col-md-4">
+            <h6 class="fw-bold">Ми в мережі</h6>
+            <a href="https://github.com/decodeigor" target="_blank" class="me-2">
+              <img src="{{ url_for('static', filename='icons/github.svg') }}" alt="GitHub" width="24">
+            </a>
+            <a href="https://www.instagram.com/_igoraa/" target="_blank" class="me-2">
+              <img src="{{ url_for('static', filename='icons/instagram.svg') }}" alt="Instagram" width="24">
+            </a>
+            <a href="https://t.me/igoraa001" target="_blank">
+              <img src="{{ url_for('static', filename='icons/telegram.svg') }}" alt="Telegram" width="24">
+            </a>
+          </div>
+        </div>
+        <hr>
+        <div class="text-center small">© 2025 Львів. Затишок поруч.</div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Перемикач теми -->
+    <script>
+      const html = document.documentElement;
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        html.setAttribute("data-bs-theme", savedTheme);
+      }
+      function toggleTheme() {
+        const current = html.getAttribute("data-bs-theme");
+        const next = current === "dark" ? "light" : "dark";
+        html.setAttribute("data-bs-theme", next);
+        localStorage.setItem("theme", next);
+      }
+    </script>
+  </body>
+</html>

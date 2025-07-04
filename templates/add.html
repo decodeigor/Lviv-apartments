@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Додати апартамент{% endblock %}
+{% block content %}
+  <h2 class="mb-4">Додати апартамент</h2>
+
+  <form method="post" enctype="multipart/form-data" class="row g-4 bg-white shadow p-4 rounded">
+    <!-- Назва -->
+    <div class="col-md-6">
+      <label class="form-label">Назва</label>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+
+    <!-- Ціна -->
+    <div class="col-md-6">
+      <label class="form-label">Ціна (грн/ніч)</label>
+      <input type="number" name="price" class="form-control" step="0.01" min="0" required>
+    </div>
+
+    <!-- Опис -->
+    <div class="col-12">
+      <label class="form-label">Опис</label>
+      <textarea name="description" class="form-control" rows="4" required></textarea>
+    </div>
+
+    <!-- Фото -->
+    <div class="col-12">
+      <label class="form-label">Фото апартаменту</label>
+      <input type="file" name="image" class="form-control" accept="image/*">
+    </div>
+
+    <!-- Кнопка -->
+    <div class="col-12 text-end">
+      <button type="submit" class="btn btn-primary px-4">Зберегти</button>
+    </div>
+  </form>
+{% endblock %}
